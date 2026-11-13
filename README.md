@@ -15,3 +15,13 @@ Management has commissioned you to build an automated, reliable Power BI Financi
   3. Pinpoint the major operational and macroeconomic expense drivers behind profit margin compression.
   4. Evaluate branch-level and department-level cost efficiencies.
   5. Provide data-backed actionable strategic recommendations for executive leadership.
+
+## Data Model Architecture (Star Schema)
+The Power BI semantic model strictly follows a **Star Schema** design built around 5 core analytical tables:
+- **`FactFinancialTransactions` (Central Fact Table):** Contains ~4,500 financial transaction records (revenues, COGS, and operating expenses).
+- **`DimAccount` (Dimension):** Chart of Accounts defining account codes, names, and P&L categories.
+- **`DimDepartment` (Dimension):** Corporate departments for departmental cost and performance tracking.
+- **`DimBranch` (Dimension):** Geographical branches for regional profitability comparisons.
+- **`DimCostCentre` (Dimension):** Functional cost pools for granular expense driver analysis.
+
+*(Note: All Dimension tables connect to `FactFinancialTransactions` using One-to-Many (`1:*`) single-direction relationships.)*
